@@ -73,7 +73,7 @@ export class SittingLeft extends State {
         this.player = player;
     }
     enter = () => {
-        this.player.frameY = 9;
+        this.player.frameY = 5;
     }
     handleInput = (input) => {
         if (input === "PRESS right"){
@@ -89,7 +89,7 @@ export class SittingRight extends State {
         this.player = player;
     }
     enter = () => {
-        this.player.frameY = 8;
+        this.player.frameY = 5;
     }
     handleInput = (input) => {
         if (input === "PRESS left"){
@@ -106,7 +106,7 @@ export class RunningLeft extends State {
         this.player = player;
     }
     enter = () => {
-        this.player.frameY = 7;
+        this.player.frameY = 3;
         this.player.speed = -this.player.maxSpeed;
     }
     handleInput = (input) => {
@@ -126,7 +126,7 @@ export class RunningRight extends State {
         this.player = player;
     }
     enter = () => {
-        this.player.frameY = 6;
+        this.player.frameY = 3;
         this.player.speed = this.player.maxSpeed;
     }
     handleInput = (input) => {
@@ -146,7 +146,7 @@ export class JumpingLeft extends State {
         this.player = player;
     }
     enter = () => {
-        this.player.frameY = 3;
+        this.player.frameY = 1;
         if (this.player.onGround()) {this.player.vy -= 20;}
         this.player.speed = -this.player.maxSpeed * .5;
     }
@@ -167,7 +167,7 @@ export class JumpingRight extends State {
         this.player = player;
     }
     enter = () => {
-        this.player.frameY = 2;
+        this.player.frameY = 1;
         if (this.player.onGround()) {this.player.vy -= 20;}
         this.player.speed = this.player.maxSpeed * .5;
     }
@@ -187,7 +187,7 @@ export class FallingLeft extends State {
         this.player = player;
     }
     enter = () => {
-        this.player.frameY = 5;
+        this.player.frameY = 2;
     }
     handleInput = (input) => {
         if (input === "PRESS right") {
@@ -203,7 +203,7 @@ export class FallingRight extends State {
         this.player = player;
     }
     enter = () => {
-        this.player.frameY = 4;
+        this.player.frameY = 2;
     }
     handleInput = (input) => {
         if (input === "PRESS left") {
