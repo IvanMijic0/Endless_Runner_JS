@@ -9,6 +9,7 @@ const KEYS = {
     KEY_RIGHT: "d",
     SHIFT: "Shift",
     ENTER: "Enter",
+    SPACE: " "
 };
 
 export default class InputHandler {
@@ -41,6 +42,9 @@ export default class InputHandler {
                     this.lastKey = "PRESS up";
                     break
                 case "w":
+                    this.lastKey = "PRESS up";
+                    break
+                case " ":
                     this.lastKey = "PRESS up";
                     break
             }
