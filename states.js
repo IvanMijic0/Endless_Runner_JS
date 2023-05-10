@@ -10,14 +10,14 @@ export const states = {
     HIT: 6
 }
 
-class State {
+class States {
     constructor(state, game) {
         this.state = state;
         this.game = game;
     }
 }
 
-export class Sitting extends State {
+export class Sitting extends States {
     constructor(game) {
         super("SITTING", game);
     }
@@ -37,7 +37,7 @@ export class Sitting extends State {
         }
     }
 }
-export class Running extends State {
+export class Running extends States {
     constructor(game) {
         super("RUNNING", game);
     }
@@ -64,7 +64,7 @@ export class Running extends State {
         }
     }
 }
-export class Jumping extends State {
+export class Jumping extends States {
     constructor(game) {
         super("JUMPING", game);
     }
@@ -83,7 +83,7 @@ export class Jumping extends State {
         }
     }
 }
-export class Falling extends State {
+export class Falling extends States {
     constructor(game) {
         super("FALLING", game);
     }
@@ -98,7 +98,7 @@ export class Falling extends State {
         }
     }
 }
-export class Rolling extends State {
+export class Rolling extends States {
     constructor(game) {
         super("ROLLING", game);
     }

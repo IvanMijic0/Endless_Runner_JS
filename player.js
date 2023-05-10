@@ -1,6 +1,6 @@
 import {
     Sitting, Running, Jumping, Falling, Rolling, states
-} from "./state.js";
+} from "./states.js";
 
 export default class Player {
     constructor(game) {
