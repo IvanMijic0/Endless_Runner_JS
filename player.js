@@ -48,7 +48,7 @@ export default class Player {
         else {
             this.speed = 0;
         }
-
+        // Boundary Check
         if (this.x < 0) this.x = 0;
         if (this.x > this.game.width - this.width) this.x = this.game.width - this.width;
         // Vertical Movement
