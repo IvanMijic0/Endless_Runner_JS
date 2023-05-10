@@ -1,7 +1,8 @@
 import Player from "./player.js";
 import InputHandler from "./input_handler.js";
 import Background from "./background.js";
-import {FlyingEnemy, GroundEnemy, ClimbingEnemy} from "./enemies.js";
+import { FlyingEnemy, GroundEnemy, ClimbingEnemy } from "./enemies.js";
+import { UI } from "./UI.js"
 
 export default class Game {
     constructor(width, height) {
@@ -12,10 +13,17 @@ export default class Game {
         this.maxSpeed = 3;
         this.background = new Background(this);
         this.player = new Player(this);
-        this.input = new InputHandler();
+        this.input = new InputHandler(this);
+        this.UI = new UI(this);
         this.enemies = [];
+        this.particles = [];
         this.enemyTimer = 0;
         this.enemyInterval = 1000;
+        this.score = 0;
+        this.fontColor = "black";
+        this.debug = false;
+        this.player.currentState = this.player.states[0];
+        this.player.currentState.enter();
     }
     update = (deltaTime) => {
         this.background.update();
@@ -34,6 +42,7 @@ export default class Game {
                this.enemies.splice(this.enemies.indexOf(enemy), 1);
            }
         });
+        // TODO HANDLE PARTICLES
     }
     draw = (ctx) => {
         this.background.draw(ctx);
@@ -41,6 +50,7 @@ export default class Game {
         this.enemies.forEach(enemy => {
            enemy.draw(ctx);
         });
+        this.UI.draw(ctx);
     }
     addEnemy = () => {
         if (this.speed > 0 && Math.random() < .5){

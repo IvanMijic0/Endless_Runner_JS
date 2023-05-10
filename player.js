@@ -1,18 +1,17 @@
 import {
-    Sitting, Running, Jumping, Falling, states
+    Sitting, Running, Jumping, Falling, Rolling, states
 } from "./state.js";
 
 export default class Player {
     constructor(game) {
         this.game = game;
         this.states = [
-            new Sitting(this),
-            new Running(this),
-            new Jumping(this),
-            new Falling(this),
+            new Sitting(this.game),
+            new Running(this.game),
+            new Jumping(this.game),
+            new Falling(this.game),
+            new Rolling(this.game),
         ];
-        this.currentState = this.states[0];
-        this.currentState.enter();
         this.width = 100;
         this.height = 91.3;
         this.x = 0;
@@ -30,6 +29,7 @@ export default class Player {
         this.image = document.getElementById("player");
     }
     update = (deltaTime, input) => {
+        this.checkCollisions();
         this.currentState.handleInput(input);
         // Horizontal Movement
         this.x += this.speed;
@@ -65,6 +65,14 @@ export default class Player {
         }
     }
     draw = (ctx) => {
+        if (this.game.debug) {
+            ctx.strokeRect(
+                this.x,
+                this.y,
+                this.width,
+                this.height
+            );
+        }
         ctx.drawImage(
             this.image,
             this.frameX * this.width,
@@ -86,4 +94,21 @@ export default class Player {
     onGround = () => {
         return this.y >= this.game.height - this.height - this.game.groundMargin;
     }
+    checkCollisions = () => {
+        this.game.enemies.forEach(enemy => {
+           if (
+               enemy.x < this.x + this.width &&
+               enemy.x + enemy.width > this.x &&
+               enemy.y < this.y + this.height &&
+               enemy.y + enemy.height > this.y
+           ) {
+               // Collision Detected
+               enemy.markedForDeletion = true;
+               this.game.score++;
+           }
+            else {
+                // No Collision
+           }
+        });
+}
 }

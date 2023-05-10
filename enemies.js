@@ -26,6 +26,14 @@ class Enemy {
         if (this.x + this.width < 0) {this.markedForDeletion = true;}
     }
     draw(ctx) {
+        if (this.game.debug) {
+            ctx.strokeRect(
+                this.x,
+                this.y,
+                this.width,
+                this.height
+            );
+        }
         ctx.drawImage(
             this.image,
             this.frameX * this.width,

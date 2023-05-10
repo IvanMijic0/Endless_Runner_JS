@@ -12,7 +12,8 @@ const KEYS = {
 };
 
 export default class InputHandler {
-    constructor() {
+    constructor(game) {
+        this.game = game;
         this.keys = [];
         this.lastKey = "";
 
@@ -50,7 +51,7 @@ export default class InputHandler {
             )
             {
                 this.keys.push(e.key);
-            }
+            } else if (e.key === "v") {this.game.debug = !this.game.debug;}
         });
 
         window.addEventListener("keyup", e => {
